@@ -39,7 +39,7 @@ backup_to_nas() {
             return 1
             ;;
         esac
-        wget ${mt6000_opkg}
+        wget -O distfeeds.conf ${mt6000_opkg}
     else
         wget https://raw.githubusercontent.com/wukongdaily/gl-inet-onescript/master/$model/distfeeds.conf
     fi
