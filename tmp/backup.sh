@@ -34,9 +34,9 @@ backup_to_nas() {
     cd /mnt/nas
     mkdir -p /mnt/nas/$model
     cd /mnt/nas/$model
-    echo "正在备份overlay 到 $pwd"
+    echo "正在备份overlay 到 $(pwd)"
     tar czvf overlay-backup.tar.gz /overlay >/dev/null 2>&1
-    echo "正在备份已安装列表到 $pwd"
+    echo "正在备份已安装列表到 $(pwd)"
     opkg list-installed >packages-list.txt
     echo "备份OPKG配置"
 
