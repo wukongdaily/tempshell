@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# wget -O backup.sh https://raw.githubusercontent.com/wukongdaily/tempshell/master/tmp/backup.sh && chmod +x backup.sh && ./backup.sh
 backup_to_nas() {
     local model=$1
     pw=$2
