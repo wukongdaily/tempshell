@@ -1,8 +1,10 @@
 #!/bin/sh
-# wget -O backup.sh https://raw.githubusercontent.com/wukongdaily/tempshell/master/tmp/backup.sh && chmod +x backup.sh && ./backup.sh
+# wget -O backup.sh https://raw.githubusercontent.com/wukongdaily/tempshell/master/tmp/backup.sh && chmod +x backup.sh 
+# sh backup.sh mt-6000 xxxxx
+model=$1
+pw=$2
 backup_to_nas() {
-    local model=$1
-    pw=$2
+    
     mkdir -p /mnt/nas/$model
     opkg update
     echo "安装 Cifs 用于挂载NAS空间"
@@ -20,4 +22,4 @@ backup_to_nas() {
     ls
 }
 
-backup_to_nas
+backup_to_nas $model $pw
