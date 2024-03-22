@@ -1,6 +1,12 @@
 #!/bin/sh
 # wget -O backup.sh https://raw.githubusercontent.com/wukongdaily/tempshell/master/tmp/backup.sh && chmod +x backup.sh 
 # sh backup.sh mt-6000 xxxxx
+# 检查是否传入了两个参数
+if [ "$#" -ne 2 ]; then
+    echo "使用方法: $0 <型号> <密码>"
+    echo "示例: $0 mt-6000 yourpassword"
+    exit 1
+fi
 model=$1
 pw=$2
 backup_to_nas() {
