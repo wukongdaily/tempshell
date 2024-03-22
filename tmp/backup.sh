@@ -14,12 +14,22 @@ backup_to_nas() {
     opkg update
     echo "安装 Cifs 用于挂载NAS空间"
     opkg install kmod-fs-cifs cifsmount
-    mount -t cifs //192.168.66.237/IntelSSD /mnt/nas -o username=wukong,password=$pw,iocharset=utf8
-    if [ $? -eq 0 ]; then
-        echo "NAS挂载成功!"
+    # 定义NAS共享和挂载点
+    nas_share="//192.168.66.237/IntelSSD"
+    mount_point="/mnt/nas"
+    # 检查NAS是否已经挂载到了指定的挂载点
+    if mount | grep -q "$nas_share on $mount_point"; then
+        echo "NAS已经成功挂载到$mount_point。"
     else
-        echo "NAS挂载失败,请检查命令和网络设置。"
-        return 1
+        # 尝试挂载NAS
+        mount -t cifs "$nas_share" "$mount_point" -o username=wukong,password=$pw,iocharset=utf8
+        # 检查mount命令的退出状态
+        if [ $? -eq 0 ]; then
+            echo "NAS挂载成功!"
+        else
+            echo "NAS挂载失败,请检查命令和网络设置。"
+            return 1
+        fi
     fi
     cd /mnt/nas
     mkdir -p /mnt/nas/$model
