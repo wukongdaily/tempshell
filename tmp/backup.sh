@@ -1,5 +1,5 @@
 #!/bin/sh
-# wget -O backup.sh https://raw.githubusercontent.com/wukongdaily/tempshell/master/tmp/backup.sh && chmod +x backup.sh
+# curl -H "Cache-Control: no-cache" -o backup.sh https://raw.githubusercontent.com/wukongdaily/tempshell/master/tmp/backup.sh && chmod +x backup.sh
 # sh backup.sh mt-6000 xxxxx
 # 检查是否传入了两个参数
 if [ "$#" -ne 2 ]; then
@@ -35,7 +35,7 @@ backup_to_nas() {
     mkdir -p /mnt/nas/$model
     cd /mnt/nas/$model
     echo "正在备份overlay 到 $(pwd)"
-    tar czvf overlay-backup.tar.gz /overlay >/dev/null 2>&1
+    tar czvf overlay_backup.tar.gz /overlay >/dev/null 2>&1
     echo "正在备份已安装列表到 $(pwd)"
     opkg list-installed >packages-list.txt
     echo "备份OPKG配置"
