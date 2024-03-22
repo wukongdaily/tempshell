@@ -16,7 +16,7 @@ backup_to_nas() {
     opkg install kmod-fs-cifs cifsmount
     mount -t cifs //192.168.66.237/IntelSSD /mnt/nas -o username=wukong,password=$pw,iocharset=utf8
     cd /mnt/nas
-    mkdir -p $model
+    mkdir -p /mnt/nas/$model
     cd /mnt/nas/$model
     echo "备份overlay"
     tar czvf overlay-backup.tar.gz /overlay
